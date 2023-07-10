@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Link from 'next/link'
 import { Inter } from 'next/font/google'
 
 import { Button } from '@components/ui/button'
@@ -12,11 +12,21 @@ export default function Home() {
     >
       <h1 className="py-10 text-3xl">블로그입니다.</h1>
       <div className="flex items-center justify-center gap-5 flex-wrap">
-        <Button>PROJECTS</Button>
-        <Button>POSTS</Button>
-        <Button>ARCHIVE</Button>
-        <Button>RESUME</Button>
-        <Button>SOCIAL</Button>
+        <Link href="/">
+          <Button>PROJECTS</Button>
+        </Link>
+        <Link href="/posts">
+          <Button>POSTS</Button>
+        </Link>
+        <Link href="/">
+          <Button>ARCHIVE</Button>
+        </Link>
+        <Link href="/">
+          <Button>RESUME</Button>
+        </Link>
+        <Link href="/">
+          <Button>SOCIAL</Button>
+        </Link>
       </div>
     </main>
   )
