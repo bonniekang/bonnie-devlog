@@ -1,4 +1,4 @@
-import { getPosts, getPost } from '../../utils/mdxUtils'
+import { getAllPosts, getPost } from '../../utils/mdxUtils'
 
 export default function PostPage(props: any) {
   return (
@@ -10,7 +10,7 @@ export default function PostPage(props: any) {
 }
 
 export async function getStaticPaths() {
-  const ids = getPosts().map((post) => {
+  const postIds = getAllPosts().map((post) => {
     return {
       params: {
         id: post.id,
@@ -19,7 +19,7 @@ export async function getStaticPaths() {
   })
 
   return {
-    paths: ids,
+    paths: postIds,
     fallback: false,
   }
 }

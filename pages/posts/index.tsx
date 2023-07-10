@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { getPosts } from '../../utils/mdxUtils'
+import { getAllPosts } from '../../utils/mdxUtils'
 
 export default function PostsPage({ posts }: any) {
   return (
@@ -18,7 +18,7 @@ export default function PostsPage({ posts }: any) {
 }
 
 export async function getStaticProps() {
-  const posts = getPosts()
+  const posts = getAllPosts()
   return {
     props: {
       posts,
