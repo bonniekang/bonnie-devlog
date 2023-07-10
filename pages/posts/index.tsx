@@ -8,8 +8,9 @@ export default function PostsPage({ posts }: any) {
       <h1 className="py-10 text-3xl">Posts</h1>
       {posts.map((post: any) => (
         <div key={post.id}>
-          <Link href={`/posts/${post.id}`}>
-            <h2>{post.frontmatter.title}</h2>
+          <Link href={`/posts/${post.id}`} className="flex items-center gap-4">
+            <h1 className="text-[30px] ">{post.frontmatter.title}</h1>
+            <p className="underline">{post.frontmatter.description}</p>
           </Link>
         </div>
       ))}
