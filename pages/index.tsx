@@ -12,13 +12,13 @@ export default function Home() {
     >
       <h1 className="py-10 text-3xl">블로그입니다.</h1>
       <div className="flex items-center justify-center gap-5 flex-wrap">
-        <Link href="/">
+        <Link href="/projects">
           <Button>PROJECTS</Button>
         </Link>
         <Link href="/posts">
           <Button>POSTS</Button>
         </Link>
-        <Link href="/">
+        <Link href="/archive">
           <Button>ARCHIVE</Button>
         </Link>
         <Link href="/">

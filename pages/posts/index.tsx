@@ -1,28 +1,18 @@
 import Link from 'next/link'
 
-import { getAllPosts } from '../../utils/mdxUtils'
+import { allPosts } from '@/contentlayer/generated'
 
-export default function PostsPage({ posts }: any) {
+export default function PostsPage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-10">
       <h1 className="py-10 text-3xl">Posts</h1>
-      {posts.map((post: any) => (
+      {allPosts.map((post: any) => (
         <div key={post.id}>
-          <Link href={`/posts/${post.id}`} className="flex items-center gap-4">
-            <h1 className="text-[30px] ">{post.frontmatter.title}</h1>
-            <p className="underline">{post.frontmatter.description}</p>
+          <Link href={`/posts/${post._raw.flattenedPath}`} className="flex items-center gap-4">
+            <h1 className="text-[30px]">{post.title}</h1>
           </Link>
         </div>
       ))}
     </main>
   )
-}
-
-export async function getStaticProps() {
-  const posts = getAllPosts()
-  return {
-    props: {
-      posts,
-    },
-  }
 }
