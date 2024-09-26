@@ -1,10 +1,6 @@
-import { getPosts } from '@/lib/notion/query'
-
 import { Button } from '@/components/ui/button'
 
 export default async function Page() {
-  const posts = await getPosts()
-
   return (
     <>
       <Button>Blog???</Button>
