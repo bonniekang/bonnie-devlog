@@ -10,7 +10,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn('min-h-screen bg-background')}>{children}</body>
+      <body className={cn('min-h-screen bg-background flex justify-center font-mono')}>
+        {children}
+      </body>
     </html>
   )
 }
