@@ -1,7 +1,7 @@
 export default function ProjectsPage() {
   return (
     <>
-      <p className="text-lg">projects</p>
+      <p>projects</p>
     </>
   )
 }

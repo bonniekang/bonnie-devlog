@@ -10,9 +10,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={'bg-background font-mono max-w-full mx-auto px-9 pb-9  sm:max-w-xl'}>
+      <body
+        className={
+          'bg-background font-mono max-w-full mx-auto px-9 pb-9  sm:max-w-xl text-stone-700'
+        }
+      >
         <Header />
-        {children}
+        <div className={'px-3'}>{children}</div>
       </body>
     </html>
   )

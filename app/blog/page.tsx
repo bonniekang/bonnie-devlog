@@ -9,7 +9,7 @@ export default async function BlogListPage() {
   return (
     <div>
       {list.map((post) => (
-        <Link key={post.id} href={`/blog/${post.id}`} className="block py-5">
+        <Link key={post.id} href={`/blog/${post.id}`} className="block py-2 hover:underline">
           {post.properties.Name.title[0].text.content}
         </Link>
       ))}
