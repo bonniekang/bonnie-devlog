@@ -1,5 +1,5 @@
+import { Header } from '@/components/header'
 import '@/styles/globals.css'
-import { cn } from '@/lib/utils'
 
 export default function RootLayout({
   // Layouts must accept a children prop.
@@ -10,7 +10,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn('bg-background font-mono max-w-full mx-auto p-9 mt-8 sm:max-w-xl')}>
+      <body className={'bg-background font-mono max-w-full mx-auto px-9 pb-9  sm:max-w-xl'}>
+        <Header />
         {children}
       </body>
     </html>
