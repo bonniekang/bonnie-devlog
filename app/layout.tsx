@@ -12,7 +12,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={
-          'bg-background font-mono max-w-full mx-auto px-9 pb-9  sm:max-w-xl text-stone-700'
+          'bg-background font-mono max-w-full mx-auto px-9 pb-9  md:max-w-screen-md text-stone-700'
         }
       >
         <Header />
