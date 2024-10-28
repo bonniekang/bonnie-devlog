@@ -12,7 +12,7 @@ export default async function BlogListPage() {
   return (
     <div>
       {blogList.map((post: TBlogList) => (
-        <BlogPost data={post.properties} id={post.id} />
+        <BlogPost data={post.properties} id={post.id} key={post.id} />
       ))}
     </div>
   )
