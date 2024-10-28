@@ -10,7 +10,7 @@ export default async function BlogListPage() {
   if (!blogList) return null
 
   return (
-    <div>
+    <div className="flex flex-col gap-5">
       {blogList.map((post: TBlogList) => (
         <BlogPost data={post.properties} id={post.id} key={post.id} />
       ))}
