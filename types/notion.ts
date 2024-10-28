@@ -1,25 +1,51 @@
 export type TBlogPost = {
-  ID: {
+  subtitle: {
     id: string
-    type: string
-    unique_id: {
-      prefix: string | null
-      number: number
+    type: 'rich_text'
+    rich_text: {
+      type: 'text'
+      text: {
+        content: string
+        link: string | null
+      }
+      annotations: {
+        bold: boolean
+        italic: boolean
+        strikethrough: boolean
+        underline: boolean
+        code: boolean
+        color: string
+      }
+      plain_text: string
+      href: string | null
+    }[]
+  }
+  active: {
+    id: string
+    type: 'checkbox'
+    checkbox: boolean
+  }
+  tags: {
+    id: string
+    type: 'multi_select'
+    multi_select: {
+      id: string
+      name: string
+      color: string
+    }[]
+  }
+  published: {
+    id: string
+    type: 'date'
+    date: {
+      start: string
+      end: null
+      time_zone: null
     }
   }
-  Tags: {
+  name: {
     id: string
-    type: string
-    multi_select: { id: string; name: string; color: string }[]
-  }
-  'Created time': {
-    id: string
-    type: string
-    created_time: string
-  }
-  Name: {
-    id: string
-    type: string
+    type: 'title'
     title: {
       type: string
       text: { content: string; link: string | null }
@@ -58,48 +84,7 @@ export type TBlogList = {
   }
   archived: boolean
   in_trash: boolean
-  properties: {
-    ID: {
-      id: string
-      type: string
-      unique_id: {
-        prefix: string | null
-        number: number
-      }
-    }
-    Tags: {
-      id: string
-      type: string
-      multi_select: {
-        id: string
-        name: string
-        color: string
-      }[]
-    }
-    'Created time': {
-      id: string
-      type: string
-      created_time: string
-    }
-    Name: {
-      id: string
-      type: string
-      title: {
-        type: string
-        text: { content: string; link: string | null }
-        annotations: {
-          bold: boolean
-          italic: boolean
-          strikethrough: boolean
-          underline: boolean
-          code: boolean
-          color: string
-        }
-        plain_text: string
-        href: string | null
-      }[]
-    }
-  }
+  properties: TBlogPost
   url: string
   public_url: string | null
 }
