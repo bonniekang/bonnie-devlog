@@ -1,5 +1,6 @@
-import { Header } from '@/components/header'
 import '@/styles/globals.css'
+
+import { Header } from '@/components/header'
 
 export default function RootLayout({
   // Layouts must accept a children prop.
@@ -16,7 +17,7 @@ export default function RootLayout({
         }
       >
         <Header />
-        <div className={'px-3'}>{children}</div>
+        <div className={'break-all'}>{children}</div>
       </body>
     </html>
   )
