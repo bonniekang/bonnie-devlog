@@ -32,7 +32,10 @@ export const metadata: Metadata = {
       // 'max-snippet': -1,
     },
   },
-  // icons: {},
+  // icons: {
+  //   icon: '/icon.png',
+  //   shortcut: '/shortcut-icon.png',
+  // },
   // alternates: {
   //   canonical: '/',
   // },
