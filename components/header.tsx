@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-const HEADER_ITEM_LIST = ['blog', 'projects', 'about'] as const
+const HEADER_ITEM_LIST = ['blog', 'projects'] as const
 
 export const Header = () => {
   const fontVariants = {
