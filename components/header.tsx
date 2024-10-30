@@ -15,11 +15,11 @@ export const Header = () => {
 
   return (
     <div className="sticky top-0 bg-white w-full h-32 mb-5">
-      <div className="w-full h-full flex flex-col items-end justify-end text-xs gap-1 py-5 mb-5 sm:flex-row sm:justify-between sm:text-base sm:gap-3">
+      <div className="w-full h-full flex flex-col items-end justify-end text-base gap-1 py-5 mb-5 sm:flex-row sm:justify-between sm:gap-3">
         <Link href="/" className="hover:underline">
           kang
         </Link>
-        <div className="flex flex-col items-end justify-end text-xs gap-1 sm:flex-row sm:justify-end sm:text-base sm:gap-3">
+        <div className="flex flex-col items-end justify-end text-base gap-1 sm:flex-row sm:justify-end sm:gap-3">
           {HEADER_ITEM_LIST.map((item) => (
             <Link
               key={item}
