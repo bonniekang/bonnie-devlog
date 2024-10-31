@@ -2,6 +2,8 @@ import '@/styles/globals.css'
 
 import type { Metadata } from 'next'
 
+import { inter } from './fonts'
+
 import { Header } from '@/components/header'
 import { BASE_URL } from '@/lib/constants'
 
@@ -44,14 +46,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="ko" className={inter.className}>
       <body
-        className={
-          'bg-background font-mono max-w-full mx-auto px-9 pb-9  md:max-w-screen-md text-stone-700'
-        }
+        className={`bg-background font-mono max-w-full mx-auto px-9 pb-9  md:max-w-screen-md text-stone-700 ${inter.className}`}
       >
         <Header />
-        <div className={'break-all'}>{children}</div>
+        <div className={'break-all w-full'}>{children}</div>
       </body>
     </html>
   )
