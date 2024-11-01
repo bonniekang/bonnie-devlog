@@ -45,7 +45,7 @@ export default async function BlogPostPage({ params }: { params: { id: string } 
 
   return (
     <Markdown
-      className={'prose prose-slate'}
+      className={'prose prose-slate max-w-none'}
       remarkPlugins={[remarkGfm]}
       rehypePlugins={[rehypeRaw]}
     >
