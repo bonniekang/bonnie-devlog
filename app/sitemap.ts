@@ -11,15 +11,25 @@ export default async function sitemap() {
       lastModified: properties.published.date.start,
     }))
 
-  /**
-   * @todo
-   * tag.. 페이지....
-   */
+  const blogTags = blogs
+    ?.filter((post) => !!post.properties.active)
+    .map(({ properties }) => properties.tags.multi_select)
+    .flat()
+    .reduce((acc: string[], tag) => {
+      if (!acc.includes(tag.name)) {
+        acc.push(tag.name)
+      }
+      return acc
+    }, [])
+    .map((tagName) => ({
+      url: `${BASE_URL}/blog/${tagName}`,
+      lastModified: new Date().toISOString().split('T')[0],
+    }))
 
   const routes = ['', '/blog', '/projects'].map((route) => ({
     url: `${BASE_URL}${route}`,
     lastModified: new Date().toISOString().split('T')[0],
   }))
 
-  return [...routes, ...posts]
+  return [...routes, ...posts, ...blogTags]
 }
