@@ -1,3 +1,6 @@
+import { BlogPost } from '@/components/blog-post'
+import { getDatabaseData } from '@/lib/notion/database'
+import { TBlogList } from '@/types/notion'
 import type { Metadata } from 'next'
 
 type Props = {
@@ -19,8 +22,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default function BlogTagPage({ params }: { params: { tag: string } }) {
+export default async function BlogTagPage({ params }: { params: { tag: string } }) {
   const blogTag = params.tag
 
-  return <>{blogTag}</>
+  const blogList = (await getDatabaseData()) as TBlogList[]
+  const taggedPosts = blogList.filter((blog) =>
+    blog.properties.tags.multi_select.find((tag) => tag.name === blogTag),
+  )
+
+  return (
+    <>
+      <h1 className="text-2xl pb-5"># {blogTag}</h1>
+      <div className="flex flex-col gap-5">
+        {taggedPosts.map((post: TBlogList) => (
+          <BlogPost data={post.properties} id={post.id} key={post.id} />
+        ))}
+      </div>
+    </>
+  )
 }
