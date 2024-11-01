@@ -24,7 +24,7 @@ export const Header = () => {
             <Link
               key={item}
               href={`/${item}`}
-              className={`hover:underline ${fontVariants[item === pathname.slice(1) ? 'bold' : 'normal']}`}
+              className={`hover:underline ${fontVariants[pathname.includes(item) ? 'bold' : 'normal']}`}
             >
               {item}
             </Link>
