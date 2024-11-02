@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     siteName: 'My blog',
     locale: 'ko_KR',
     type: 'website',
-    images: [],
+    images: [{ url: '/opengraph-image.png' }],
   },
   robots: {
     index: true,
@@ -29,19 +29,12 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      // 'max-video-preview': -1,
-      // 'max-image-preview': 'large',
-      // 'max-snippet': -1,
     },
   },
-  // icons: {
-  //   icon: '/icon.png',
-  //   shortcut: '/shortcut-icon.png',
-  // },
-  // alternates: {
-  //   canonical: '/',
-  // },
-  // themeColor:[]
+  icons: {
+    icon: '/icon.png',
+    apple: '/apple-icon.png',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
