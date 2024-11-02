@@ -35,6 +35,13 @@ export const metadata: Metadata = {
     icon: '/icon.png',
     apple: '/apple-icon.png',
   },
+  twitter: {
+    title: 'blog',
+    description: 'This is my blog.',
+    images: {
+      url: '/opengraph-image.png',
+    },
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
