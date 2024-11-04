@@ -4,19 +4,20 @@ import type { Metadata } from 'next'
 
 import { noto } from './fonts'
 
+import { BASE_URL, META_DATA } from '@/lib/constants'
+
 import { Header } from '@/components/header'
-import { BASE_URL } from '@/lib/constants'
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: 'blog',
+    default: META_DATA.title,
     template: '%s | blog',
   },
-  description: 'This is my blog.',
+  description: META_DATA.description,
   openGraph: {
-    title: 'blog', // default 값 빼기
-    description: 'This is my blog.', // default 값 빼기
+    title: META_DATA.title,
+    description: META_DATA.description,
     url: '/',
     siteName: 'My blog',
     locale: 'ko_KR',
@@ -36,8 +37,8 @@ export const metadata: Metadata = {
     apple: '/apple-icon.png',
   },
   twitter: {
-    title: 'blog',
-    description: 'This is my blog.',
+    title: META_DATA.title,
+    description: META_DATA.description,
     images: {
       url: '/opengraph-image.png',
     },

@@ -17,7 +17,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: 'article',
       url: `/blog/${tag}`,
       authors: 'kang',
-      // publishedTime,
     },
   }
 }
