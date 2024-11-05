@@ -4,6 +4,8 @@ import type { Metadata } from 'next'
 
 import { noto } from './fonts'
 
+import { config } from '@/config'
+
 import { BASE_URL, META_DATA } from '@/lib/constants'
 
 import { Header } from '@/components/header'
@@ -43,6 +45,9 @@ export const metadata: Metadata = {
     images: {
       url: '/opengraph-image.png',
     },
+  },
+  verification: {
+    google: config.google.verificationValue,
   },
 }
 
