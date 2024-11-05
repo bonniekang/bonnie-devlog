@@ -7,6 +7,7 @@ import { noto } from './fonts'
 import { BASE_URL, META_DATA } from '@/lib/constants'
 
 import { Header } from '@/components/header'
+import { Footer } from '@/components/footer'
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -49,10 +50,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ko">
       <body
-        className={`bg-background font-mono max-w-full mx-auto px-9 pb-9  md:max-w-screen-md text-stone-700 ${noto.className}`}
+        className={`bg-background font-mono max-w-full mx-auto px-9 md:max-w-screen-md text-stone-700 ${noto.className}`}
       >
-        <Header />
-        <div className={'break-all w-full'}>{children}</div>
+        <div className="flex flex-col min-h-screen justify-between">
+          <div>
+            <Header />
+            <main className={'break-all w-full pb-24'}>{children}</main>
+          </div>
+          <Footer />
+        </div>
       </body>
     </html>
   )
