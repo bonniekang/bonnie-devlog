@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       type: 'article',
       url: `/blog/${params.id}`,
-      authors: 'kang',
+      authors: META_DATA.author,
     },
   }
 }

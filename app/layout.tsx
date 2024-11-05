@@ -13,14 +13,14 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
     default: META_DATA.title,
-    template: '%s | blog',
+    template: '%s | bonniekang',
   },
   description: META_DATA.description,
   openGraph: {
     title: META_DATA.title,
     description: META_DATA.description,
     url: '/',
-    siteName: 'My blog',
+    siteName: META_DATA.title,
     locale: 'ko_KR',
     type: 'website',
     images: [{ url: '/opengraph-image.png' }],

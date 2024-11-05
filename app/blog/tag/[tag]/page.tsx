@@ -1,7 +1,12 @@
-import { BlogPost } from '@/components/blog-post'
-import { getDatabaseData } from '@/lib/notion/database'
-import { TBlogList } from '@/types/notion'
 import type { Metadata } from 'next'
+
+import { META_DATA } from '@/lib/constants'
+
+import { TBlogList } from '@/types/notion'
+
+import { getDatabaseData } from '@/lib/notion/database'
+
+import { BlogPost } from '@/components/blog-post'
 
 type Props = {
   params: { tag: string }
@@ -16,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       type: 'article',
       url: `/blog/${tag}`,
-      authors: 'kang',
+      authors: META_DATA.author,
     },
   }
 }
