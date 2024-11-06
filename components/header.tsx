@@ -16,7 +16,7 @@ export const Header = () => {
   return (
     <div className="sticky top-0 bg-white w-full h-32 mb-5 text-stone-500">
       <div className="w-full h-full flex flex-col items-end justify-end text-md gap-1 py-5 mb-5 sm:flex-row sm:justify-between sm:gap-3">
-        <Link href="/" className="hover:underline">
+        <Link href="/" className="px-2 text-sm bg-stone-400 text-white rounded-sm hover:underline">
           도연﹒Bonnie
         </Link>
         <div className="flex flex-col items-end justify-end gap-1 sm:flex-row sm:justify-end sm:gap-3">
