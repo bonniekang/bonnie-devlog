@@ -5,6 +5,9 @@ export const config = {
     notionUrl: process.env.NOTION_URL,
   },
   google: {
-    verificationValue: process.env.GOOGLE_VERIFICATION_VALUE,
+    verificationValue: process.env.GOOGLE_VERIFICATION_VALUE!,
   },
-}
+  naver: {
+    verificationValue: process.env.NAVER_VERIFICATION_VALUE!,
+  },
+} as const

@@ -49,6 +49,9 @@ export const metadata: Metadata = {
   verification: {
     google: config.google.verificationValue,
   },
+  other: {
+    'naver-site-verification': config.naver.verificationValue,
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
