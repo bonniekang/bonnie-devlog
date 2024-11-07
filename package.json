@@ -11,6 +11,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/third-parties": "^15.0.2",
     "@notionhq/client": "^2.2.15",
     "date-fns": "^4.1.0",
     "eslint": "8.44.0",

@@ -5,3 +5,5 @@ export const META_DATA = {
   description: 'This is dev log by doyeon bonnie kang',
   author: 'doyeon bonnie kang',
 } as const
+
+export const GTM_ID = 'G-EY7Y7CJTVT'
