@@ -15,8 +15,11 @@ export const Header = () => {
 
   return (
     <div className="sticky top-0 bg-white w-full h-32 mb-5 text-stone-500">
-      <div className="w-full h-full flex flex-col items-end justify-end text-md gap-1 py-5 mb-5 sm:flex-row sm:justify-between sm:gap-3">
-        <Link href="/" className="px-2 text-sm bg-stone-400 text-white rounded-sm hover:underline">
+      <div className="w-full h-full flex flex-col items-end justify-end text-sm gap-1 py-5 mb-5 sm:flex-row sm:justify-between sm:gap-3">
+        <Link
+          href="/"
+          className="px-2 bg-stone-400 text-white rounded-sm hover:bg-white hover:text-stone-400"
+        >
           도연﹒Bonnie
         </Link>
         <div className="flex flex-col items-end justify-end gap-1 sm:flex-row sm:justify-end sm:gap-3">
@@ -24,7 +27,7 @@ export const Header = () => {
             <Link
               key={item}
               href={`/${item}`}
-              className={`hover:underline ${fontVariants[pathname.includes(item) ? 'bold' : 'normal']}`}
+              className={`hover:underline ${fontVariants[pathname.includes(item) ? 'bold' : 'normal']} px-2`}
             >
               {item}
             </Link>
