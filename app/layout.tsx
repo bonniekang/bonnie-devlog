@@ -3,7 +3,7 @@ import '@/styles/globals.css'
 import type { Metadata } from 'next'
 import { GoogleTagManager } from '@next/third-parties/google'
 
-import { noto } from './fonts'
+import { inter } from './fonts'
 
 import { config } from '@/config'
 
@@ -60,7 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ko">
       <GoogleTagManager gtmId={GTM_ID} />
       <body
-        className={`bg-background font-mono max-w-full mx-auto px-9 md:max-w-screen-md text-stone-700 ${noto.className}`}
+        className={`bg-background font-mono max-w-full mx-auto px-9 md:max-w-screen-md text-stone-700 ${inter.className}`}
       >
         <div className="flex flex-col min-h-screen justify-between">
           <div>
