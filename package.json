@@ -22,6 +22,7 @@
     "react-markdown": "^9.0.1",
     "rehype-raw": "^7.0.0",
     "remark-gfm": "^4.0.0",
+    "rss": "^1.2.2",
     "semver": "^7.6.3"
   },
   "devDependencies": {
@@ -29,6 +30,7 @@
     "@types/node": "20.4.1",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
+    "@types/rss": "^0.0.32",
     "autoprefixer": "10.4.14",
     "eslint-config-next": "^14.2.13",
     "eslint-config-prettier": "^8.8.0",
