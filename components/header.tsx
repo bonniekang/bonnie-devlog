@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 
 import { CookieIcon } from '@/components/icons/cookie-icon'
 
-const HEADER_ITEM_LIST = ['blog', 'about'] as const
+const HEADER_ITEM_LIST = ['Blog', 'About'] as const
 
 export const Header = () => {
   const fontVariants = {
@@ -17,7 +17,7 @@ export const Header = () => {
 
   return (
     <div className="sticky top-0 bg-white w-full h-32 mb-5 text-stone-500">
-      <div className="w-full h-full flex flex-col items-end justify-end text-sm gap-1 py-5 mb-5 sm:flex-row sm:justify-between sm:gap-3">
+      <div className="w-full h-full flex flex-col items-end justify-end text-base gap-1 py-5 mb-5 sm:flex-row sm:justify-between sm:gap-3">
         <div className="flex items-center gap-1">
           <CookieIcon />
           <Link href="/" className="px-1 rounded-sm bg-white hover:bg-stone-100">
@@ -28,7 +28,7 @@ export const Header = () => {
           {HEADER_ITEM_LIST.map((item) => (
             <Link
               key={item}
-              href={`/${item}`}
+              href={`/${item.toLowerCase()}`}
               className={`hover:underline ${fontVariants[pathname.includes(item) ? 'bold' : 'normal']} px-2`}
             >
               {item}
