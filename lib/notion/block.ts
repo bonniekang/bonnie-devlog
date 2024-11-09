@@ -1,7 +1,10 @@
+import { cache } from 'react'
+import 'server-only'
+
 import { notion } from './client'
 
 // Get all child blocks given a parent page ID
-export const getBlockData = async (pageId: string) => {
+export const getBlockData = cache(async (pageId: string) => {
   let blocks = []
 
   let response = await notion.blocks.children.list({
@@ -21,4 +24,4 @@ export const getBlockData = async (pageId: string) => {
   }
 
   return blocks
-}
+})

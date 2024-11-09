@@ -14,6 +14,11 @@ type Props = {
   params: { id: string }
 }
 
+export async function generateStaticParams() {
+  const blogList = (await getDatabaseData()) as TBlogList[]
+  return blogList.map((blog) => ({ id: blog.id }))
+}
+
 const getBlogFromParams = async ({ params }: Props) => {
   const id = (await params).id
   const blogList = (await getDatabaseData()) as TBlogList[]
@@ -43,8 +48,9 @@ export default async function BlogPostPage({ params }: { params: { id: string } 
   const blogPostId = params.id
 
   const postContent = await getNotionPosts(blogPostId)
-
+  // console.log(postContent[0]['heading_2'].rich_text[0]['plain_text'], 'postContent')
   return (
+    // <div>{postContent[0]?.heading_2?.rich_text[0]['plain_text'] ?? '!!!!'}</div>
     <Markdown
       className={'prose prose-slate max-w-none text-stone-700 font-light'}
       remarkPlugins={[remarkGfm]}

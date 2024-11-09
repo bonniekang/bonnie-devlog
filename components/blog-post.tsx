@@ -5,7 +5,7 @@ import { TBlogPost } from '@/types/notion'
 
 import { Tag } from '@/components/tag'
 
-export const BlogPost = ({ data, id }: { data: TBlogPost; id: string }) => {
+export const BlogPost = async ({ data, id }: { data: TBlogPost; id: string }) => {
   return (
     <div>
       <Link key={id} href={`/blog/${id}`} className="block py-2 group">

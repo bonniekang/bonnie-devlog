@@ -1,3 +1,6 @@
+import { cache } from 'react'
+import 'server-only'
+
 import { Client } from '@notionhq/client'
 import { NotionToMarkdown } from 'notion-to-md'
 import { getBlockData } from './block'
@@ -11,7 +14,7 @@ export const notion = new Client({
 export const n2m = new NotionToMarkdown({ notionClient: notion })
 
 // notion page content
-export const getNotionPosts = async (pageId: string) => {
+export const getNotionPosts = cache(async (pageId: string) => {
   // image block 추려내기
   const allBlocks = await getBlockData(pageId)
   const imgBlocks = allBlocks.filter((block) => 'type' in block && block.type === 'image')
@@ -32,7 +35,9 @@ export const getNotionPosts = async (pageId: string) => {
     }
   }
 
+  // return allBlocks
+
   const mdblocks = await n2m.pageToMarkdown(pageId)
   const mdString = n2m.toMarkdownString(mdblocks)
   return mdString.parent
-}
+})

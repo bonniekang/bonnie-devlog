@@ -1,11 +1,13 @@
+import { cache } from 'react'
+import 'server-only'
+
 import { isNotionClientError, APIErrorCode } from '@notionhq/client'
+import { notion } from './client'
 
 import { config } from '@/config'
 
-import { notion } from './client'
-
 // database list
-export const getDatabaseData = async () => {
+export const getDatabaseData = cache(async () => {
   try {
     const databaseData = await notion.databases.query({
       database_id: config.notion.databaseId!,
@@ -52,4 +54,4 @@ export const getDatabaseData = async () => {
       console.error('An unexpected error occurred:', error)
     }
   }
-}
+})
