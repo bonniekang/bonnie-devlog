@@ -4,15 +4,12 @@ import { TBlogList } from '@/types/notion'
 
 export default async function sitemap() {
   const blogs = (await getDatabaseData()) as TBlogList[]
-  const posts = blogs
-    ?.filter((post) => !!post.properties.active)
-    .map(({ id, properties }) => ({
-      url: `${BASE_URL}/blog/${id}`,
-      lastModified: properties.published.date.start,
-    }))
+  const posts = blogs.map(({ id, properties }) => ({
+    url: `${BASE_URL}/blog/${id}`,
+    lastModified: properties.published.date.start,
+  }))
 
   const blogTags = blogs
-    ?.filter((post) => !!post.properties.active)
     .map(({ properties }) => properties.tags.multi_select)
     .flat()
     .reduce((acc: string[], tag) => {

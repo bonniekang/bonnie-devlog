@@ -21,11 +21,9 @@ export async function GET() {
   }
   const feed = new RSS(feedOptions)
 
-  const blogs = (await getDatabaseData()) as TBlogList[]
+  const blogPosts = (await getDatabaseData()) as TBlogList[]
 
-  const posts = blogs?.filter((post) => !!post.properties.active)
-
-  posts?.forEach((post) => {
+  blogPosts?.forEach((post) => {
     feed.item({
       title: post.properties.name.title[0].text.content,
       url: `${BASE_URL}/blog/${post.id}`,

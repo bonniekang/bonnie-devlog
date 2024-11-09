@@ -6,8 +6,6 @@ import { TBlogPost } from '@/types/notion'
 import { Tag } from '@/components/tag'
 
 export const BlogPost = ({ data, id }: { data: TBlogPost; id: string }) => {
-  if (!data.active.checkbox) return null
-
   return (
     <div>
       <Link key={id} href={`/blog/${id}`} className="block py-2 group">

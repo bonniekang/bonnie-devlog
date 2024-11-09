@@ -15,6 +15,12 @@ export const getDatabaseData = async () => {
           direction: 'descending',
         },
       ],
+      filter: {
+        property: 'active',
+        checkbox: {
+          equals: true,
+        },
+      },
     })
 
     return databaseData.results
@@ -35,15 +41,15 @@ export const getDatabaseData = async () => {
         RequestTimeout = "notionhq_client_request_timeout",
         ResponseError = "notionhq_client_response_error"
      */
-    if (isNotionClientError(error)) {
-      if (error.code) {
-        if (APIErrorCode.RateLimited) {
-          // 요청 횟수 초과로 인한 에러일 경우, 일정시간 이후 재요청 시도
-          console.log(error.code)
-        } else {
-          console.log(error.code)
-        }
+    if (isNotionClientError(error) && error.code) {
+      if (error.code === APIErrorCode.RateLimited) {
+        // 요청 횟수 초과로 인한 에러일 경우, 일정시간 이후 재요청 시도
+        console.log(error.code)
+      } else {
+        console.log(error.code)
       }
+    } else {
+      console.error('An unexpected error occurred:', error)
     }
   }
 }
