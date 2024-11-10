@@ -28,7 +28,7 @@ export const getNotionPosts = cache(async (pageId: string) => {
         block_id: blockId,
         image: {
           external: {
-            url: `${config.notion.notionUrl}/image/${encodeURIComponent(imgUrl)}?table=block&id=${imgBlocks[0].id}&cache=v2`,
+            url: `${config.notion.notionUrl}/image/${encodeURIComponent(imgUrl)}?table=block&id=${blockId}&cache=v2`,
           },
         },
       })
