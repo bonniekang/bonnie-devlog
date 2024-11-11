@@ -43,5 +43,13 @@ const reloadImageBlock = async (blockId: string) => {
 
 export const NotionImage = async ({ blockData }: { blockData: ImageBlockObjectResponse }) => {
   const imgUrl = await getImgUrl(blockData)
-  return <Image src={imgUrl} width={768} height={400} alt="blog-post-image" />
+  return (
+    <Image
+      src={imgUrl}
+      width={768}
+      height={400}
+      style={{ width: '100%', height: 'auto' }}
+      alt="blog-post-image"
+    />
+  )
 }
