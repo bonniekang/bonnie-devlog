@@ -1,7 +1,3 @@
-import remarkGfm from 'remark-gfm'
-import rehypeRaw from 'rehype-raw'
-import Markdown from 'react-markdown'
-
 import type { Metadata } from 'next'
 
 import { getNotionPosts } from '@/lib/notion/client'
@@ -9,6 +5,8 @@ import { getDatabaseData } from '@/lib/notion/database'
 import { META_DATA } from '@/lib/constants'
 
 import { TBlogList } from '@/types/notion'
+
+import { Block } from '@/components/notion/block'
 
 type Props = {
   params: { id: string }
@@ -47,16 +45,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BlogPostPage({ params }: { params: { id: string } }) {
   const blogPostId = params.id
 
-  const postContent = await getNotionPosts(blogPostId)
-  // console.log(postContent[0]['heading_2'].rich_text[0]['plain_text'], 'postContent')
+  const allBlocks = await getNotionPosts(blogPostId)
+
   return (
-    // <div>{postContent[0]?.heading_2?.rich_text[0]['plain_text'] ?? '!!!!'}</div>
-    <Markdown
-      className={'prose prose-slate max-w-none text-stone-700 font-light'}
-      remarkPlugins={[remarkGfm]}
-      rehypePlugins={[rehypeRaw]}
-    >
-      {postContent}
-    </Markdown>
+    <article className="prose prose-neutral max-w-none">
+      {allBlocks.map((block, index) => (
+        <Block blockData={block} key={`${index}-${block.id}`} />
+      ))}
+    </article>
   )
 }

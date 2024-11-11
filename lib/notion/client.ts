@@ -1,22 +1,22 @@
 import { cache } from 'react'
 import 'server-only'
 
-import { Client } from '@notionhq/client'
-import { NotionToMarkdown } from 'notion-to-md'
-import { getBlockData } from './block'
+import { Client, isFullBlock } from '@notionhq/client'
+
 import { config } from '@/config'
+
+import { getBlockData } from './block'
 
 // Initializing a notion client
 export const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 })
 
-export const n2m = new NotionToMarkdown({ notionClient: notion })
-
 // notion page content
 export const getNotionPosts = cache(async (pageId: string) => {
+  // block data 중 PartialBlockObjectResponse 제외
+  const allBlocks = (await getBlockData(pageId)).filter(isFullBlock)
   // image block 추려내기
-  const allBlocks = await getBlockData(pageId)
   const imgBlocks = allBlocks.filter((block) => 'type' in block && block.type === 'image')
 
   for (const imgBlock of imgBlocks) {
@@ -35,9 +35,5 @@ export const getNotionPosts = cache(async (pageId: string) => {
     }
   }
 
-  // return allBlocks
-
-  const mdblocks = await n2m.pageToMarkdown(pageId)
-  const mdString = n2m.toMarkdownString(mdblocks)
-  return mdString.parent
+  return allBlocks
 })
