@@ -1,6 +1,9 @@
 import Link from 'next/link'
 
-import { TextRichTextItemResponse } from '@notionhq/client/build/src/api-endpoints'
+import {
+  RichTextItemResponse,
+  TextRichTextItemResponse,
+} from '@notionhq/client/build/src/api-endpoints'
 
 type AnnotationResponse = {
   bold: boolean
@@ -51,11 +54,16 @@ const createTextStyleProps = (
   return { ...annotation, link }
 }
 
-export const RichText = ({ richTexts }: { richTexts: TextRichTextItemResponse[] }) => {
+export const RichText = ({ richTexts }: { richTexts: RichTextItemResponse[] }) => {
   // text | mention | equation 중 text 만 받는다
+
+  const filteredRichTexts = richTexts.filter(
+    (textObj): textObj is TextRichTextItemResponse => textObj.type === 'text',
+  )
+
   return (
     <>
-      {richTexts.map((richText, index) => {
+      {filteredRichTexts.map((richText: TextRichTextItemResponse, index) => {
         const textStyleProps = createTextStyleProps(richText.annotations, richText.text.link)
 
         if ((richText.type = 'text')) {
@@ -69,7 +77,7 @@ export const RichText = ({ richTexts }: { richTexts: TextRichTextItemResponse[] 
             <Link
               key={index}
               href={richText.text.link.url}
-              className={`...${getTextStyles(textStyleProps)}`}
+              className={`...${getTextStyles(textStyleProps)} underline`}
               target="_blank"
             >
               {richText.text.content}
