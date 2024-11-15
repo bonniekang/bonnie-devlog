@@ -6,7 +6,7 @@ import { META_DATA } from '@/lib/constants'
 
 import { TBlogList } from '@/types/notion'
 
-import { Block } from '@/components/notion/block'
+import { NotionRenderer } from '@/components/notion/renderer'
 
 type Props = {
   params: { id: string }
@@ -50,7 +50,7 @@ export default async function BlogPostPage({ params }: { params: { id: string } 
   return (
     <article className="prose prose-neutral max-w-none">
       {allBlocks.map((block, index) => (
-        <Block blockData={block} key={`${index}-${block.id}`} />
+        <NotionRenderer blockData={block} key={`${index}-${block.id}`} />
       ))}
     </article>
   )

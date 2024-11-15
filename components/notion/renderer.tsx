@@ -7,7 +7,7 @@ import { NotionImage } from './image'
 import { BulletedListItem, NumberedListItem } from './list-item'
 import { Quote } from './quote'
 
-export const Block = ({ blockData }: { blockData: BlockObjectResponse }) => {
+export const NotionRenderer = ({ blockData }: { blockData: BlockObjectResponse }) => {
   switch (blockData.type) {
     case 'heading_1':
       return <Heading1 blockData={blockData} />
