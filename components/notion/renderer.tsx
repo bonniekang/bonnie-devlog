@@ -32,7 +32,6 @@ export const NotionRenderer = ({
     case 'image':
       return <NotionImage blockData={blockData} />
     case 'bulleted_list_item':
-    case 'numbered_list_item':
       return (
         <ListItem
           allBlocks={allBlocks}
@@ -40,7 +39,14 @@ export const NotionRenderer = ({
           listType={'bulleted_list_item'}
         />
       )
-
+    case 'numbered_list_item':
+      return (
+        <ListItem
+          allBlocks={allBlocks}
+          currentBlockIdx={currentBlockIdx}
+          listType={'numbered_list_item'}
+        />
+      )
     case 'quote':
       return <Quote blockData={blockData} />
     default:

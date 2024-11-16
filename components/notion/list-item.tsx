@@ -37,10 +37,8 @@ export const ListItem = ({
 }
 
 // helper functions
-const isListItem = (
-  block: BlockObjectResponse,
-  // type: 'bulleted_list_item' | 'numbered_list_item',
-) => block?.type === 'bulleted_list_item' || block?.type === 'numbered_list_item'
+const isListItem = (block: BlockObjectResponse) =>
+  block?.type === 'bulleted_list_item' || block?.type === 'numbered_list_item'
 
 const collectListItems = (allBlocks: BlockObjectResponse[], startIndex: number) => {
   let currentIndex = startIndex
@@ -55,11 +53,18 @@ const collectListItems = (allBlocks: BlockObjectResponse[], startIndex: number) 
   return listItems
 }
 
-const getRichText = (item: BlockObjectResponse, listType: string) =>
-  listType === 'bulleted_list_item'
-    ? (item as BulletedListItemBlockObjectResponse).bulleted_list_item.rich_text
-    : (item as NumberedListItemBlockObjectResponse).numbered_list_item.rich_text
-
+const getRichText = (
+  item: BlockObjectResponse,
+  listType: 'bulleted_list_item' | 'numbered_list_item',
+) => {
+  if (listType === 'bulleted_list_item') {
+    const bulletedItem = item as BulletedListItemBlockObjectResponse
+    return bulletedItem?.bulleted_list_item?.rich_text || []
+  } else {
+    const numberedItem = item as NumberedListItemBlockObjectResponse
+    return numberedItem?.numbered_list_item?.rich_text || []
+  }
+}
 const getListWrapper = (listType: 'bulleted_list_item' | 'numbered_list_item') => {
   return listType === 'bulleted_list_item' ? 'ul' : 'ol'
 }
