@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 
-import { getNotionPosts, getBlogPostList } from '@/lib/notion'
 import { META_DATA } from '@/lib/constants'
+import { getNotionPosts, getBlogPostList } from '@/lib/notion'
+import { formatDate } from '@/lib/utils'
 
 import { TBlogPostList } from '@/types/notion'
 
@@ -24,15 +25,16 @@ const getBlogFromParams = async ({ params }: Props) => {
   return {
     title: blogData?.properties.name.title[0].text.content ?? META_DATA.title,
     description: blogData?.properties.subtitle.rich_text[0].plain_text ?? META_DATA.description,
+    publishedDate: blogData?.properties.published.date.start ?? '',
   }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const blogPostData = await getBlogFromParams({ params })
+  const { title, description } = await getBlogFromParams({ params })
 
   return {
-    title: blogPostData.title,
-    description: blogPostData.description,
+    title,
+    description,
     openGraph: {
       type: 'article',
       url: `/blog/${params.id}`,
@@ -46,16 +48,25 @@ export default async function BlogPostPage({ params }: { params: { id: string } 
 
   const allBlocks = await getNotionPosts(blogPostId)
 
+  const { title, publishedDate } = await getBlogFromParams({ params })
+
   return (
-    <article className="prose prose-neutral max-w-none">
-      {allBlocks.map((block, index) => (
-        <NotionRenderer
-          blockData={block}
-          allBlocks={allBlocks}
-          currentBlockIdx={index}
-          key={`${index}-${block.id}`}
-        />
-      ))}
+    <article>
+      <header>
+        <h2 className="text-base m-0 pb-2 text-stone-700 font-semibold">{title}</h2>
+        <p className="text-xs m-0">{formatDate(publishedDate)}</p>
+      </header>
+      <hr className="h-px w-full mt-4 mb-12 bg-stone-200" />
+      <section className="prose prose-neutral max-w-none prose-headings:my-5">
+        {allBlocks.map((block, index) => (
+          <NotionRenderer
+            blockData={block}
+            allBlocks={allBlocks}
+            currentBlockIdx={index}
+            key={`${index}-${block.id}`}
+          />
+        ))}
+      </section>
     </article>
   )
 }
