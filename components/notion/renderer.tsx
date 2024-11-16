@@ -6,6 +6,7 @@ import { Divider } from './divider'
 import { NotionImage } from './image'
 import { ListItem } from './list-item'
 import { Quote } from './quote'
+import { Callout } from './callout'
 
 export const NotionRenderer = ({
   blockData,
@@ -49,6 +50,8 @@ export const NotionRenderer = ({
       )
     case 'quote':
       return <Quote blockData={blockData} />
+    case 'callout':
+      return <Callout blockData={blockData} />
     default:
       return null
   }

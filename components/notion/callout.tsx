@@ -7,7 +7,7 @@ export const Callout = ({ blockData }: { blockData: CalloutBlockObjectResponse }
   const emoji = icon && icon.type === 'emoji' ? icon.emoji : null
 
   return (
-    <div className="bg-gray-300">
+    <div className="py-1 px-2 border border-stone-200 rounded my-3 bg-stone-50">
       <span>{emoji}</span>
       <p className="">
         <RichText richTexts={blockData.callout.rich_text} />
