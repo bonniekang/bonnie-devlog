@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 
-import { TBlogList } from '@/types/notion'
+import { TBlogPostList } from '@/types/notion'
 
-import { getDatabaseData } from '@/lib/notion/database'
+import { getBlogPostList } from '@/lib/notion'
 
 import { BlogPost } from '@/components/blog-post'
 
@@ -15,13 +15,13 @@ export const metadata: Metadata = {
 }
 
 export default async function BlogListPage() {
-  const blogList = (await getDatabaseData()) as TBlogList[]
+  const blogPostList = (await getBlogPostList()) as TBlogPostList[]
 
-  if (!blogList) return null
+  if (!blogPostList) return null
 
   return (
     <div className="flex flex-col gap-5">
-      {blogList.map((post: TBlogList) => (
+      {blogPostList.map((post: TBlogPostList) => (
         <BlogPost data={post.properties} id={post.id} key={post.id} />
       ))}
     </div>

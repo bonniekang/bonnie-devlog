@@ -63,7 +63,7 @@ export type TBlogPost = {
   }
 }
 
-export type TBlogList = {
+export type TBlogPostList = {
   object: string
   id: string
   created_time: string

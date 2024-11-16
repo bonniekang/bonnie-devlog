@@ -4,7 +4,7 @@ import { ImageBlockObjectResponse } from '@notionhq/client/build/src/api-endpoin
 
 import { config } from '@/config'
 
-import { notion } from '@/lib/notion/client'
+import { notion } from '@/lib/notion'
 
 const getImgUrl = async (blockData: ImageBlockObjectResponse) => {
   if (blockData.image.type === 'external') {

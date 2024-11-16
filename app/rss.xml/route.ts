@@ -2,8 +2,8 @@ import RSS from 'rss'
 
 import { BASE_URL, META_DATA } from '@/lib/constants'
 
-import { getDatabaseData } from '@/lib/notion/database'
-import { TBlogList } from '@/types/notion'
+import { getBlogPostList } from '@/lib/notion'
+import { TBlogPostList } from '@/types/notion'
 
 export async function GET() {
   const feedOptions = {
@@ -21,7 +21,7 @@ export async function GET() {
   }
   const feed = new RSS(feedOptions)
 
-  const blogPosts = (await getDatabaseData()) as TBlogList[]
+  const blogPosts = (await getBlogPostList()) as TBlogPostList[]
 
   blogPosts?.forEach((post) => {
     feed.item({

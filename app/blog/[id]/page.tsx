@@ -1,10 +1,9 @@
 import type { Metadata } from 'next'
 
-import { getNotionPosts } from '@/lib/notion/client'
-import { getDatabaseData } from '@/lib/notion/database'
+import { getNotionPosts, getBlogPostList } from '@/lib/notion'
 import { META_DATA } from '@/lib/constants'
 
-import { TBlogList } from '@/types/notion'
+import { TBlogPostList } from '@/types/notion'
 
 import { NotionRenderer } from '@/components/notion/renderer'
 
@@ -13,14 +12,14 @@ type Props = {
 }
 
 export async function generateStaticParams() {
-  const blogList = (await getDatabaseData()) as TBlogList[]
-  return blogList.map((blog) => ({ id: blog.id }))
+  const blogPostList = (await getBlogPostList()) as TBlogPostList[]
+  return blogPostList.map((blog) => ({ id: blog.id }))
 }
 
 const getBlogFromParams = async ({ params }: Props) => {
   const id = (await params).id
-  const blogList = (await getDatabaseData()) as TBlogList[]
-  const blogData = blogList?.find((blog) => blog.id === id)
+  const blogPostList = (await getBlogPostList()) as TBlogPostList[]
+  const blogData = blogPostList?.find((blog) => blog.id === id)
 
   return {
     title: blogData?.properties.name.title[0].text.content ?? META_DATA.title,
@@ -50,7 +49,12 @@ export default async function BlogPostPage({ params }: { params: { id: string } 
   return (
     <article className="prose prose-neutral max-w-none">
       {allBlocks.map((block, index) => (
-        <NotionRenderer blockData={block} allBlocks={allBlocks} currentBlockIdx={index} key={`${index}-${block.id}`} />
+        <NotionRenderer
+          blockData={block}
+          allBlocks={allBlocks}
+          currentBlockIdx={index}
+          key={`${index}-${block.id}`}
+        />
       ))}
     </article>
   )

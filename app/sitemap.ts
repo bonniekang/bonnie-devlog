@@ -1,15 +1,15 @@
 import { BASE_URL } from '@/lib/constants'
-import { getDatabaseData } from '@/lib/notion/database'
-import { TBlogList } from '@/types/notion'
+import { getBlogPostList } from '@/lib/notion'
+import { TBlogPostList } from '@/types/notion'
 
 export default async function sitemap() {
-  const blogs = (await getDatabaseData()) as TBlogList[]
-  const posts = blogs.map(({ id, properties }) => ({
+  const blogPostList = (await getBlogPostList()) as TBlogPostList[]
+  const posts = blogPostList.map(({ id, properties }) => ({
     url: `${BASE_URL}/blog/${id}`,
     lastModified: properties.published.date.start,
   }))
 
-  const blogTags = blogs
+  const blogTags = blogPostList
     .map(({ properties }) => properties.tags.multi_select)
     .flat()
     .reduce((acc: string[], tag) => {
