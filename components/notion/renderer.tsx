@@ -4,10 +4,18 @@ import { Paragraph } from './paragraph'
 import { Code } from './code'
 import { Divider } from './divider'
 import { NotionImage } from './image'
-import { BulletedListItem, NumberedListItem } from './list-item'
+import { ListItem } from './list-item'
 import { Quote } from './quote'
 
-export const NotionRenderer = ({ blockData }: { blockData: BlockObjectResponse }) => {
+export const NotionRenderer = ({
+  blockData,
+  allBlocks,
+  currentBlockIdx,
+}: {
+  blockData: BlockObjectResponse
+  allBlocks: BlockObjectResponse[]
+  currentBlockIdx: number
+}) => {
   switch (blockData.type) {
     case 'heading_1':
       return <Heading1 blockData={blockData} />
@@ -24,9 +32,15 @@ export const NotionRenderer = ({ blockData }: { blockData: BlockObjectResponse }
     case 'image':
       return <NotionImage blockData={blockData} />
     case 'bulleted_list_item':
-      return <BulletedListItem blockData={blockData} />
     case 'numbered_list_item':
-      return <NumberedListItem blockData={blockData} />
+      return (
+        <ListItem
+          allBlocks={allBlocks}
+          currentBlockIdx={currentBlockIdx}
+          listType={'bulleted_list_item'}
+        />
+      )
+
     case 'quote':
       return <Quote blockData={blockData} />
     default:

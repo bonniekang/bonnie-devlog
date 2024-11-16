@@ -50,7 +50,7 @@ export default async function BlogPostPage({ params }: { params: { id: string } 
   return (
     <article className="prose prose-neutral max-w-none">
       {allBlocks.map((block, index) => (
-        <NotionRenderer blockData={block} key={`${index}-${block.id}`} />
+        <NotionRenderer blockData={block} allBlocks={allBlocks} currentBlockIdx={index} key={`${index}-${block.id}`} />
       ))}
     </article>
   )
