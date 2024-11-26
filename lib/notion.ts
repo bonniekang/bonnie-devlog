@@ -5,6 +5,8 @@ import { Client, isFullBlock, isNotionClientError, APIErrorCode } from '@notionh
 
 import { config } from '@/config'
 
+import { TBlogPostTag } from '@/types/notion'
+
 // Initializing a notion client
 export const notion = new Client({
   auth: process.env.NOTION_TOKEN,
@@ -108,3 +110,16 @@ export const getNotionPosts = cache(async (pageId: string) => {
 
   return allBlocks
 })
+
+// filtering and extracting unique blog tags
+export const extractUniqueTags = (blogPostList: TBlogPostTag[]): string[] => {
+  return blogPostList
+    .map(({ properties }) => properties.tags.multi_select)
+    .flat()
+    .reduce((acc: string[], tag) => {
+      if (!acc.includes(tag.name)) {
+        acc.push(tag.name)
+      }
+      return acc
+    }, [])
+}

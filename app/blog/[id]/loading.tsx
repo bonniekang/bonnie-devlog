@@ -1,3 +1,3 @@
 export default function BlogPostPage() {
-  return <>로딩중</>
+  return <>loading..</>
 }

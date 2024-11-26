@@ -88,3 +88,11 @@ export type TBlogPostList = {
   url: string
   public_url: string | null
 }
+
+export type TBlogPostTag = {
+  properties: {
+    tags: {
+      multi_select: { name: string }[]
+    }
+  }
+}
