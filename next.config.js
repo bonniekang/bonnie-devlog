@@ -5,7 +5,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'righteous-shallot-c04.notion.site',
+        hostname: process.env.IMAGE_HOSTNAME,
       },
     ],
   },
