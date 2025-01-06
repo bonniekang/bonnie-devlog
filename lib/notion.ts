@@ -94,7 +94,7 @@ export const getNotionPosts = cache(async (pageId: string) => {
 
   for (const imgBlock of imgBlocks) {
     // image type 이 file 인 경우에만 업데이트
-    if (imgBlock.image.type === 'file') {
+    if ('image' in imgBlock && imgBlock.image.type === 'file') {
       const imgUrl = imgBlock.image.file.url.split('?')[0]
       const blockId = imgBlock.id
       await notion.blocks.update({
