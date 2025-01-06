@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 
 import { CookieIcon } from '@/components/icons/cookie-icon'
 
-const HEADER_ITEM_LIST = ['Blog', 'About'] as const
+const HEADER_ITEM_LIST = ['Blog', 'Archive'] as const
 
 export const Header = () => {
   const fontVariants = {
