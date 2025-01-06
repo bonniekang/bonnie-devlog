@@ -14,7 +14,7 @@ export const Heading1 = ({ blockData }: { blockData: Heading1BlockObjectResponse
     .join('')
 
   return (
-    <h1 id={heading1Id}>
+    <h1 id={heading1Id} className="pt-10">
       <RichText richTexts={blockData.heading_1.rich_text} />
     </h1>
   )
@@ -26,7 +26,7 @@ export const Heading2 = ({ blockData }: { blockData: Heading2BlockObjectResponse
     .join('')
 
   return (
-    <h2 id={heading2Id}>
+    <h2 id={heading2Id} className="pt-10">
       <RichText richTexts={blockData.heading_2.rich_text} />
     </h2>
   )
@@ -38,7 +38,7 @@ export const Heading3 = ({ blockData }: { blockData: Heading3BlockObjectResponse
     .join('')
 
   return (
-    <h3 id={heading3Id}>
+    <h3 id={heading3Id} className="pt-8">
       <RichText richTexts={blockData.heading_3.rich_text} />
     </h3>
   )

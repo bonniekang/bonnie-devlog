@@ -9,7 +9,7 @@ import { TBlogPostTag } from '@/types/notion'
 
 // Initializing a notion client
 export const notion = new Client({
-  auth: process.env.NOTION_TOKEN,
+  auth: config.notion.notionKey,
 })
 
 // all blog posts from notion database
@@ -94,7 +94,7 @@ export const getNotionPosts = cache(async (pageId: string) => {
 
   for (const imgBlock of imgBlocks) {
     // image type 이 file 인 경우에만 업데이트
-    if ('image' in imgBlock && imgBlock.image.type === 'file') {
+    if (imgBlock.image.type === 'file') {
       const imgUrl = imgBlock.image.file.url.split('?')[0]
       const blockId = imgBlock.id
       await notion.blocks.update({

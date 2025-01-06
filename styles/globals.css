@@ -1,3 +1,5 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import 'highlight.js/styles/base16/atelier-plateau-light.css';

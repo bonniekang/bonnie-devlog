@@ -23,7 +23,8 @@ const getBlogFromParams = async ({ params }: Props) => {
   const blogData = blogPostList?.find((blog) => blog.id === id)
 
   return {
-    title: blogData?.properties.name.title[0].text.content ?? META_DATA.title,
+    title:
+      blogData?.properties.name.title.map((item) => item.plain_text).join('') ?? META_DATA.title,
     description: blogData?.properties.subtitle.rich_text[0].plain_text ?? META_DATA.description,
     publishedDate: blogData?.properties.published.date.start ?? '',
   }
@@ -57,7 +58,7 @@ export default async function BlogPostPage({ params }: { params: { id: string } 
         <p className="text-xs m-0">{formatDate(publishedDate)}</p>
       </header>
       <hr className="h-px w-full mt-4 mb-12 bg-stone-200" />
-      <section className="prose prose-neutral max-w-none prose-headings:my-5">
+      <section className="prose prose-neutral max-w-none prose-headings:my-5 ">
         {allBlocks.map((block, index) => (
           <NotionRenderer
             blockData={block}

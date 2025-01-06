@@ -42,7 +42,7 @@ const getTextStyles = (textStyle: TTextStyleProps) => {
   if (textStyle.italic) classNames.push('italic')
   if (textStyle.strikethrough) classNames.push('line-through')
   if (textStyle.underline) classNames.push('underline')
-  if (textStyle.link) classNames.push('underline cursor-pointer')
+  if (textStyle.link) classNames.push('underline cursor-pointer text-stone-500')
 
   return classNames
 }
@@ -56,36 +56,39 @@ const createTextStyleProps = (
 
 export const RichText = ({ richTexts }: { richTexts: RichTextItemResponse[] }) => {
   // text | mention | equation 중 text 만 받는다
-
   const filteredRichTexts = richTexts.filter(
     (textObj): textObj is TextRichTextItemResponse => textObj.type === 'text',
   )
-
   return (
     <>
       {filteredRichTexts.map((richText: TextRichTextItemResponse, index) => {
         const textStyleProps = createTextStyleProps(richText.annotations, richText.text.link)
 
-        if ((richText.type = 'text')) {
-          return (
-            <span key={index} className={`...${getTextStyles(textStyleProps)}`}>
-              {richText.text.content}
-            </span>
-          )
-        } else if (richText.text.link) {
+        // Inline code style
+        if (richText.annotations.code) {
+          return <code key={index}>{richText.text.content}</code>
+        }
+
+        // link
+        if (richText.text.link) {
           return (
             <Link
               key={index}
               href={richText.text.link.url}
-              className={`...${getTextStyles(textStyleProps)} underline`}
+              className={`${getTextStyles(textStyleProps)}`}
               target="_blank"
             >
               {richText.text.content}
             </Link>
           )
-        } else {
-          return <span key={index}></span>
         }
+
+        // default
+        return (
+          <span key={index} className={`${getTextStyles(textStyleProps)}`}>
+            {richText.text.content}
+          </span>
+        )
       })}
     </>
   )
