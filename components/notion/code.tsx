@@ -4,8 +4,9 @@ import { CodeBlockObjectResponse } from '@notionhq/client/build/src/api-endpoint
 
 export const Code = ({ blockData }: { blockData: CodeBlockObjectResponse }) => {
   const content = blockData.code.rich_text.map((text) => text.plain_text).join('')
+  const language = hljs.getLanguage(blockData.code.language) ? blockData.code.language : 'plaintext'
   const highlightedCode = hljs.highlight(content, {
-    language: blockData.code.language,
+    language: language,
   }).value
 
   return (
@@ -13,7 +14,7 @@ export const Code = ({ blockData }: { blockData: CodeBlockObjectResponse }) => {
       <pre className={`language-${blockData.code.language}`}>
         <code
           className={`language-${blockData.code.language}`}
-          dangerouslySetInnerHTML={{ __html: highlightedCode }}
+          dangerouslySetInnerHTML={{ __html: highlightedCode || '<i>No description provided.</i>' }}
         />
       </pre>
     </section>
