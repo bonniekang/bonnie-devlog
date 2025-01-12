@@ -25,7 +25,7 @@ export async function GET() {
 
   blogPosts?.forEach((post) => {
     feed.item({
-      title: post.properties.name.title[0].text.content,
+      title: post.properties.name.title.map((item) => item.plain_text).join('') || 'No Title',
       url: `${BASE_URL}/blog/${post.id}`,
       date: post.properties.published.date.start,
       description: post.properties.subtitle.rich_text[0].plain_text,
