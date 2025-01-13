@@ -1,4 +1,5 @@
 import { cache } from 'react'
+import { unstable_cache } from 'next/cache'
 import 'server-only'
 
 import { Client, isFullBlock, isNotionClientError, APIErrorCode } from '@notionhq/client'
@@ -13,7 +14,7 @@ export const notion = new Client({
 })
 
 // all blog posts from notion database
-export const getBlogPostList = cache(async () => {
+const fetchBlogPostList = async () => {
   try {
     const databaseData = await notion.databases.query({
       database_id: config.notion.databaseId!,
@@ -59,8 +60,11 @@ export const getBlogPostList = cache(async () => {
     } else {
       console.error('An unexpected error occurred:', error)
     }
+    throw error
   }
-})
+}
+
+export const getBlogPostList = unstable_cache(fetchBlogPostList, ['blog-posts'])
 
 // Get all child blocks given a parent page ID
 export const getBlockData = cache(async (pageId: string) => {
