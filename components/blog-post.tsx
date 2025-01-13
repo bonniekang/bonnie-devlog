@@ -17,7 +17,7 @@ export const BlogPost = async ({ data, id }: { data: TBlogPost; id: string }) =>
           {data.subtitle.rich_text[0].plain_text}
         </p>
       </Link>
-      <ul className="flex gap-3">
+      <ul className="flex gap-3 flex-wrap">
         {data.tags.multi_select.map((tag) => (
           <Tag tagName={tag.name} key={tag.id} />
         ))}

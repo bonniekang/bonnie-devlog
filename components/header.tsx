@@ -29,7 +29,7 @@ export const Header = () => {
             <Link
               key={item}
               href={`/${item.toLowerCase()}`}
-              className={`hover:underline ${fontVariants[pathname.includes(item) ? 'bold' : 'normal']} px-2`}
+              className={`hover:underline ${pathname.split('/')[1].includes(item.toLowerCase()) ? 'underline' : 'none'} px-2`}
             >
               {item}
             </Link>
