@@ -64,7 +64,9 @@ const fetchBlogPostList = async () => {
   }
 }
 
-export const getBlogPostList = unstable_cache(fetchBlogPostList, ['blog-posts'])
+export const getBlogPostList = unstable_cache(fetchBlogPostList, ['blog-posts'], {
+  tags: ['blog-posts'],
+})
 
 // Get all child blocks given a parent page ID
 export const getBlockData = cache(async (pageId: string) => {
