@@ -9,8 +9,13 @@ export default function Page() {
     <div className="text-stone-700">
       <section className="pt-14 text-sm text-right">
         <p>개발자로 일하며 얻은 배움과 경험, 소중한 인사이트들을 차곡차곡 기록해두는 공간입니다.</p>
+        <p
+          className="pt-24 italic tracking-wider whitespace-pre-wrap break-keep overline decoration-wavy decoration-stone-200
+ "
+        >{`I love trying new things and easily bouncing back from failures. \nThis mindset defines my approach to web development.`}</p>
       </section>
-      <section className="flex justify-end py-20">
+
+      <section className="flex justify-end pt-8 pb-20">
         <a
           href="mailto:bonnie59kang@gmail.com"
           className="p-2 rounded-lg bg-white hover:bg-stone-100"
