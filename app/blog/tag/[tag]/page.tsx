@@ -13,7 +13,7 @@ type Props = {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const tag = params.tag
+  const tag = decodeURIComponent(params.tag)
 
   return {
     title: `${tag} posts`,
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function BlogTagPage({ params }: { params: { tag: string } }) {
-  const blogTag = params.tag
+  const blogTag = decodeURIComponent(params.tag)
 
   const blogPostList = (await getBlogPostList()) as TBlogPostList[]
   const taggedPosts = blogPostList.filter((blog) =>

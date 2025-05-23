@@ -7,6 +7,7 @@ import { formatDate } from '@/lib/utils'
 import { TBlogPostList } from '@/types/notion'
 
 import { NotionRenderer } from '@/components/notion/renderer'
+import { Tag } from '@/components/tag'
 
 type Props = {
   params: { id: string }
@@ -27,6 +28,7 @@ const getBlogFromParams = async ({ params }: Props) => {
       blogData?.properties.name.title.map((item) => item.plain_text).join('') ?? META_DATA.title,
     description: blogData?.properties.subtitle.rich_text[0].plain_text ?? META_DATA.description,
     publishedDate: blogData?.properties.published.date.start ?? '',
+    tags: blogData?.properties.tags.multi_select ?? [],
   }
 }
 
@@ -49,13 +51,18 @@ export default async function BlogPostPage({ params }: { params: { id: string } 
 
   const allBlocks = await getNotionPosts(blogPostId)
 
-  const { title, publishedDate } = await getBlogFromParams({ params })
+  const { title, publishedDate, tags } = await getBlogFromParams({ params })
 
   return (
     <article>
       <header>
         <h2 className="text-base m-0 pb-2 text-stone-700 font-semibold">{title}</h2>
-        <p className="text-xs m-0">{formatDate(publishedDate)}</p>
+        <p className="text-xs m-0 pb-2">{formatDate(publishedDate)}</p>
+        <ul className="flex gap-3 flex-wrap">
+          {tags.map((tag) => (
+            <Tag tagName={tag.name} key={tag.id} />
+          ))}
+        </ul>
       </header>
       <hr className="h-px w-full mt-4 mb-12 bg-stone-200" />
       <section className="prose prose-neutral max-w-none prose-headings:my-5 ">
